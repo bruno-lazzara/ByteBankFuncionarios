@@ -13,22 +13,30 @@ namespace ByteBankk
         {
             GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
 
-            Funcionario carlos = new Funcionario();
+            Funcionario carlos = new Funcionario(2000, "546.879.157-20");
             carlos.Nome = "Carlos";
-            carlos.CPF = "546.879.157-20";
-            carlos.Salario = 2000;
+
+            carlos.AumentarSalario();
+            Console.WriteLine("Novo salário do Carlos: " + carlos.Salario);
+
+            Console.WriteLine(Funcionario.TotalDeFuncionarios);
 
             gerenciador.Registrar(carlos);
 
-            Diretor roberta = new Diretor();
+            Diretor roberta = new Diretor("454.658.148-3");
             roberta.Nome = "Roberta";
-            roberta.CPF = "454.658.148-3";
-            roberta.Salario = 5000;
+            Console.WriteLine(roberta.CPF);
+            Console.WriteLine(Funcionario.TotalDeFuncionarios);
 
+            roberta.AumentarSalario();
+            Console.WriteLine("Novo salário da Roberta: " + roberta.Salario);
+
+            // Polimorfismo: um objeto do tipo Funcionario recebe a referência de um objeto do tipo Diretor,
+            // que é classe filha da classe Funcionario. Portanto, robertaTeste é do tipo Diretor.
             Funcionario robertaTeste = roberta;
 
-            Console.WriteLine("Bonificação de uma referência de Diretor: " + roberta.GetBonificacao());
-            Console.WriteLine("Bonificação de uma referência de Funcionário: " + robertaTeste.GetBonificacao());
+            Console.WriteLine("Bonificação de uma referência de Diretor: " + roberta.GetBonificacao()); // Bonificação de Diretor
+            Console.WriteLine("Bonificação de uma referência de Funcionário: " + robertaTeste.GetBonificacao()); // Bonificação de Diretor
 
 
             gerenciador.Registrar(roberta);
