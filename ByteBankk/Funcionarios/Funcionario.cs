@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteBankk.Funcionarios
 {
-    public class Funcionario
+    public abstract class Funcionario
     {
         public static int TotalDeFuncionarios { get; private set; }
 
@@ -21,24 +21,19 @@ namespace ByteBankk.Funcionarios
         {
             Console.WriteLine("Criando FUNCIONARIO");
 
-            CPF = cpf;
             Salario = salario;
+            CPF = cpf;
 
             TotalDeFuncionarios++;
         }
 
-        public virtual void AumentarSalario()
-        {
-            Salario *= 1.1;
-        }
+        // Definimos esses dois métodos seguintes como abstratos.
+        // Isso nos obriga a criarmos estes métodos dentro das novas classes de
+        // funcionários que criarmos futuramente, para evitarmos o erro da não
+        // implementação destes métodos.
+        public abstract void AumentarSalario();
 
-        // Esse método é do tipo virtual. Ou seja, ele é um método que pode ser
-        // sobrescrito por outros, ele não existe de forma tão fixa, predominante,
-        // dentro da classe. Um método em outra classe filha pode sobrescrever
-        // esse método utilizando o termo "override".
-        public virtual double GetBonificacao()
-        {
-            return Salario * 0.10;
-        }
+        public abstract double GetBonificacao();
+        // OBS: métodos abstratos só podem existir em classes abstratas.
     }
 }
